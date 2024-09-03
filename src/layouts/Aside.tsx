@@ -1,7 +1,11 @@
-import React from "react";
+import GenreList from "../components/GenreList";
 
 const Aside = () => {
-    return <div className=" hidden lg:block">Aside</div>;
+    return (
+        <div className=" lg:block pl-3">
+            <GenreList />
+        </div>
+    );
 };
 
 export default Aside;
