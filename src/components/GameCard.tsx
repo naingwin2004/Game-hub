@@ -1,6 +1,6 @@
 import { Game } from "../hooks/useGames.ts";
 import PlatformIconList from "./PlatformIconList";
-import logo from "../assets/naingwin.jpg";
+import Score from "../components/Score";
 interface Props {
     game: Game;
 }
@@ -13,9 +13,12 @@ const GameCard = ({ game }: Props) => {
                 alt={game.name}
             />
             <div className="bg-gray-800 p-3 text-2xl h-full dark:text-white text-white font-bold">
-                <PlatformIconList
-                    platforms={game.parent_platforms.map(p => p.platform)}
-                />
+                <div className="flex items-center justify-between">
+                    <PlatformIconList
+                        platforms={game.parent_platforms.map(p => p.platform)}
+                    />
+                    <Score score={game.metacritic} />
+                </div>
                 <p>{game.name}</p>
             </div>
         </div>
