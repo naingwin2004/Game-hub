@@ -1,8 +1,16 @@
-const App=()=> {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
-export default App
+//Layouts
+import Navbar from "./layouts/Navbar.tsx";
+import Aside from "./layouts/Aside.tsx";
+import Main from "./layouts/Main.tsx";
+const App = () => {
+    return (
+        <div className="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen">
+            <Navbar />
+            <div className="flex">
+                <Aside />
+                <Main />
+            </div>
+        </div>
+    );
+};
+export default App;
