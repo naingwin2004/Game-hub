@@ -4,7 +4,7 @@ import Aside from "./layouts/Aside.tsx";
 import Main from "./layouts/Main.tsx";
 const App = () => {
     return (
-        <div className="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen">
+        <div className="bg-white dark:bg-gray-950 text-black dark:text-white min-h-screen">
             <Navbar />
             <div className="flex">
                 <Aside />
