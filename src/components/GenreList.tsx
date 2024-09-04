@@ -1,40 +1,41 @@
-import useGenre from "../hooks/useGenre.ts";
+import useGenres from "../hooks/useGenre.ts";
 import Spinner from "../components/Spinner";
-import { Genre } from "../hooks/useGenre.ts";
+import { Genre } from "../hooks/useGenres.ts";
+
 interface Props {
+    selectedGenre: Genre | null;
     onSelectedGenre: (genre: Genre) => void;
 }
-const GenreList = ({ onSelectedGenre }: Props) => {
-    const { genres, error, isLoading } = useGenre();
-    if (error) {
-        return null;
-    }
+
+const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
+    const { data, error, isLoading } = useGenres();
+
+    if (error) return null;
     if (isLoading) return <Spinner />;
+
     return (
-        <>
-            <div>
-                {genres.map(genre => (
-                    <div
-                        key={genre.id}
-                        className="flex py-2 items-center gap-3"
+        <div>
+            {data.map(genre => (
+                <div
+                    key={genre.id}
+                    className={`flex py-2 items-center gap-3 ${
+                        genre.id === selectedGenre?.id ? "font-bold" : ""
+                    }`}
+                >
+                    <img
+                        src={genre.image_background}
+                        alt={genre.name}
+                        className="w-9 h-7 rounded object-cover"
+                    />
+                    <button
+                        className="text-md hover:underline"
+                        onClick={() => onSelectedGenre(genre)}
                     >
-                        <img
-                            src={genre.image_background}
-                            alt={genre.name}
-                            className="w-9 h-7 rounded object-cover"
-                        />
-                        <button
-                            className="text-md font-bold hover:underline"
-                            onClick={() => {
-                                onSelectedGenre(genre);
-                            }}
-                        >
-                            {genre.name}
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </>
+                        {genre.name}
+                    </button>
+                </div>
+            ))}
+        </div>
     );
 };
 

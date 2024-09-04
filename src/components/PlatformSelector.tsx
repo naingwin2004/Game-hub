@@ -1,20 +1,22 @@
-import usePlatforms from "../hooks/usePlaforms.ts"; // Corrected import
-import { Platform } from "../hooks/usePlatforms.ts"; // Corrected import
+import usePlatforms from "../hooks/usePlatforms.ts";
+import { Platform } from "../hooks/usePlatforms";
 
 interface Props {
+    selectedPlatform: Platform | null;
     onSelectedPlatform: (platform: Platform) => void;
-    selectedPlatform: Platform | null
 }
 
-const PlatformSelector = ({ onSelectedPlatform ,selectedPlatform}: Props) => {
-    const { platforms, error } = usePlatforms(); // Corrected hook name
+const PlatformSelector = ({ selectedPlatform, onSelectedPlatform }: Props) => {
+    const { data: platforms, error } = usePlatforms();
 
     if (error) return null;
 
     return (
-        <details className="dropdown relative mx-3 my-4  px-3 dark:bg-gray-800 bg-gray-800 rounded inline  font-bold text-white">
-            <summary className="m-1">{selectedPlatform?.name || 'Platform'}</summary>
-            <ul className="rounded z-[99] w-52 shadow absolute bg-gray-800 my-4 left-0 grid ">
+        <details className="dropdown relative mx-3 my-4 px-3 dark:bg-gray-800 bg-gray-800 rounded inline font-bold text-white">
+            <summary className="m-1">
+                {selectedPlatform?.name || "Platform"}
+            </summary>
+            <ul className="rounded z-[99] w-full shadow absolute bg-gray-800 my-4 left-0 grid">
                 {platforms.map(platform => (
                     <li
                         className="hover:bg-gray-600 p-2"

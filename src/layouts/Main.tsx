@@ -1,26 +1,28 @@
 import GameGrid from "../components/GameGrid";
 import PlatformSelector from "../components/PlatformSelector";
-import { Genre } from "../hooks/useGenre.ts";
-import { Platform } from "../hooks/usePlatforms.ts";
+import SortSelector from "../components/SortSelector";
+import { GameQuery } from "../App";
 
 interface Props {
-    selectedGenre: Genre | null;
-    selectedPlatform: Platform | null;
-    setSelectedPlatform: (platform: Platform | null) => void;
+    gameQuery: GameQuery;
+    setGameQuery: (query: GameQuery) => void;
 }
 
-const Main = ({
-    selectedGenre,
-    selectedPlatform,
-    setSelectedPlatform
-}: Props) => {
+const Main = ({ gameQuery, setGameQuery }: Props) => {
     return (
         <div className="w-full">
-            <PlatformSelector onSelectedPlatform={setSelectedPlatform} selectedPlatform={selectedPlatform}/>
-            <GameGrid
-                selectedGenre={selectedGenre}
-                selectedPlatform={selectedPlatform}
+            <PlatformSelector
+                selectedPlatform={gameQuery.platform}
+                onSelectedPlatform={platform =>
+                    setGameQuery({ ...gameQuery, platform })
+                }
             />
+            <SortSelector
+                onSelectSortOrder={sortOrder =>
+                    setGameQuery({ ...gameQuery, sortOrder })
+                }
+            />
+            <GameGrid gameQuery={gameQuery} />
         </div>
     );
 };

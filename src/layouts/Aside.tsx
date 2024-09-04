@@ -1,14 +1,18 @@
 import GenreList from "../components/GenreList";
-import { Genre } from "../hooks/useGenre.ts";
+import { GameQuery } from "../App";
 
 interface Props {
-    setSelectedGenre: (genre: Genre | null) => void;
+    gameQuery: GameQuery;
+    setGameQuery: (query: GameQuery) => void;
 }
 
-const Aside = ({ setSelectedGenre }: Props) => {
+const Aside = ({ gameQuery, setGameQuery }: Props) => {
     return (
         <div className="hidden lg:block pl-3">
-            <GenreList onSelectedGenre={genre => setSelectedGenre(genre)} />
+            <GenreList
+                selectedGenre={gameQuery.genre}
+                onSelectedGenre={genre => setGameQuery({ ...gameQuery, genre })}
+            />
         </div>
     );
 };

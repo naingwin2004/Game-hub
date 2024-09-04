@@ -34,7 +34,7 @@ const PlatformIconList = ({ platforms }: Props) => {
     return (
         <div className="flex space-x-2 mb-1">
             {platforms.map(platform => {
-                const IconComponent = iconMap[platform.slug];
+                const IconComponent = iconMap[platform.slug] || FaWindows;
                 return (
                     <IconComponent
                         key={platform.id}
