@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import apiClient from "../services/client-service.ts";
+import { AxiosRequestConfig } from "axios";
+import { Genre } from "../hooks/useGenre.ts";
 //type check
 export interface Platform {
     id: number;
@@ -20,7 +22,11 @@ interface GameResponses {
     results: Game[];
 }
 
-const useGames = () => {
+const useGames = (
+    selectedGenre: Genre | null,
+    selectedPlatform: Platform | null,
+    requestConfig?: AxiosRequestConfig
+) => {
     const [games, setGames] = useState<Game[]>([]);
     const [error, setError] = useState("");
     const [isLoading, setLoading] = useState(false);
@@ -29,7 +35,11 @@ const useGames = () => {
         setLoading(true);
         const controller = new AbortController();
         apiClient
-            .get<GameResponses>("/games", { signal: controller.signal })
+            .get<GameResponses>(
+                "/games",
+                { params: { genres: selectedGenre?.id ,platforms:selectedPlatform?.id} },
+                { signal: controller.signal, ...requestConfig }
+            )
             .then(res => {
                 setGames(res.data.results);
                 setLoading(false);
@@ -41,7 +51,7 @@ const useGames = () => {
             });
 
         return () => controller.abort();
-    }, []);
+    }, [selectedGenre,selectedPlatform]);
 
     return { games, error, isLoading };
 };

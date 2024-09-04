@@ -1,9 +1,14 @@
 import GenreList from "../components/GenreList";
+import { Genre } from "../hooks/useGenre.ts";
 
-const Aside = () => {
+interface Props {
+    setSelectedGenre: (genre: Genre | null) => void;
+}
+
+const Aside = ({ setSelectedGenre }: Props) => {
     return (
-        <div className=" lg:block pl-3">
-            <GenreList />
+        <div className="hidden lg:block pl-3">
+            <GenreList onSelectedGenre={genre => setSelectedGenre(genre)} />
         </div>
     );
 };

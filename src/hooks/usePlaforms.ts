@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react";
 import apiClient from "../services/client-service.ts";
-export interface Genre {
+
+export interface Platform {
     id: number;
     name: string;
-    image_background: string;
+    slug: string;
 }
-interface GenreResponse {
+
+interface PlatformResponse {
     count: number;
-    results: Genre[];
+    results: Platform[];
 }
-const useGenre = () => {
-    const [genres, setGenres] = useState<Genre[]>([]);
+
+const usePlatforms = () => {
+    const [platforms, setPlatforms] = useState<Platform[]>([]);
     const [error, setError] = useState("");
     const [isLoading, setLoading] = useState(false);
 
@@ -18,18 +21,22 @@ const useGenre = () => {
         setLoading(true);
         const controller = new AbortController();
         apiClient
-            .get<GenreResponse>("/genres", { signal: controller.signal })
+            .get<PlatformResponse>("/platforms/lists/parents", {
+                signal: controller.signal
+            })
             .then(res => {
-                setGenres(res.data.results);
+                setPlatforms(res.data.results);
                 setLoading(false);
             })
             .catch(err => {
                 if (err instanceof CanceledError) return;
-                setGenres(err.message);
+                setError(err.message);
                 setLoading(false);
             });
         return () => controller.abort();
     }, []);
-    return { genres, error, isLoading };
+
+    return { platforms, error, isLoading };
 };
-export default useGenre;
+
+export default usePlatforms;
