@@ -9,7 +9,7 @@ const Score = ({ score }: Props) => {
             ? "bg-green-500"
             : score > 60
             ? "bg-yellow-500"
-            : "bg-red-500";
+            : "";
     return (
         <span className={`text-sm ${color} bg-opacity-30 px-2 py-0.5 rounded`}>
             {score}

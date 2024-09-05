@@ -9,6 +9,7 @@ export interface GameQuery {
     genre: Genre | null;
     platform: Platform | null;
     sortOrder: string;
+    searchText: string;
 }
 
 const App = () => {
@@ -19,10 +20,14 @@ const App = () => {
 
     return (
         <div className="bg-white dark:bg-gray-950 text-black dark:text-white min-h-screen">
-            <Navbar />
+            <Navbar
+                onSearch={(searchText:string) =>
+                    setGameQuery({ ...gameQuery, searchText })
+                }
+            />
             <div className="flex">
                 <Aside gameQuery={gameQuery} setGameQuery={setGameQuery} />
-                <Main gameQuery={gameQuery}setGameQuery={setGameQuery} />
+                <Main gameQuery={gameQuery} setGameQuery={setGameQuery} />
             </div>
         </div>
     );
