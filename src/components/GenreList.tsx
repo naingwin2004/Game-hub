@@ -1,6 +1,6 @@
 import useGenres from "../hooks/useGenre.ts";
 import Spinner from "../components/Spinner";
-import { Genre } from "../hooks/useGenres.ts";
+import { Genre } from "../hooks/useGenre.ts";
 
 interface Props {
     selectedGenre: Genre | null;

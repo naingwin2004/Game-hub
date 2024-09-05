@@ -15,7 +15,9 @@ export interface GameQuery {
 const App = () => {
     const [gameQuery, setGameQuery] = useState<GameQuery>({
         genre: null,
-        platform: null
+        platform: null,
+        sortOrder: 'default',
+    searchText: '' 
     });
 
     return (
