@@ -14,12 +14,13 @@ const GameGrid = ({ gameQuery }: Props) => {
     return (
         <>
             {error && <p>{error}</p>}
-            <div className="grid 2xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-9 sm:mx-5 mx-2 z-10">
+           
+            <div className="grid 2xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3  z-10">
                 {isLoading &&
                     skeletons.map((_, index) => (
                         <GameCardSkeleton key={index} />
                     ))}
-                {data.map((game) => (
+                {data.map(game => (
                     <GameCard key={game.id} game={game} />
                 ))}
             </div>

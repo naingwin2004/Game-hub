@@ -18,9 +18,8 @@ const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
             {data.map(genre => (
                 <div
                     key={genre.id}
-                    className={`flex py-2 items-center gap-3 ${
-                        genre.id === selectedGenre?.id ? "font-bold" : ""
-                    }`}
+                    className={`flex py-2 items-center  gap-1
+                    ${genre.id === selectedGenre?.id ? "font-bold" : ""}`}
                 >
                     <img
                         src={genre.image_background}
@@ -28,7 +27,7 @@ const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
                         className="w-9 h-7 rounded object-cover"
                     />
                     <button
-                        className="text-md hover:underline"
+                        className="text-md hover:underline text-start"
                         onClick={() => onSelectedGenre(genre)}
                     >
                         {genre.name}

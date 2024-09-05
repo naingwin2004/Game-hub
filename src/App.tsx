@@ -21,7 +21,7 @@ const App = () => {
     return (
         <div className="bg-white dark:bg-gray-950 text-black dark:text-white min-h-screen">
             <Navbar
-                onSearch={(searchText:string) =>
+                onSearch={(searchText: string) =>
                     setGameQuery({ ...gameQuery, searchText })
                 }
             />
