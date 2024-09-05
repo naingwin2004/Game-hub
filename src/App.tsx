@@ -2,7 +2,7 @@ import Navbar from "./layouts/Navbar";
 import Aside from "./layouts/Aside";
 import Main from "./layouts/Main";
 import { useState } from "react";
-import { Genre } from "./hooks/useGenres";
+import { Genre } from "./hooks/useGenre";
 import { Platform } from "./hooks/usePlatforms";
 
 export interface GameQuery {
@@ -16,8 +16,8 @@ const App = () => {
     const [gameQuery, setGameQuery] = useState<GameQuery>({
         genre: null,
         platform: null,
-        sortOrder: 'default',
-    searchText: '' 
+        sortOrder: "default",
+        searchText: ""
     });
 
     return (
