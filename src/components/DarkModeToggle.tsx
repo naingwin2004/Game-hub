@@ -24,13 +24,13 @@ const DarkModeToggle = () => {
     };
 
     return (
-        <div className="flex gap-3">
+        <div className="flex gap-3 flex-none">
             <button
                 onClick={toggleDarkMode}
                 className="flex items-center justify-between w-11 h-6 bg-gray-200 dark:bg-gray-800 rounded-full"
             >
                 <div
-                    className={`flex items-center justify-center w-6 h-6 rounded-full transform transition-transform duration-300 ${
+                    className={`flex items-center justify-center w-6 h-6 rounded-full transform transition-transform duration-300 flex-nowrap ${
                         isDarkMode
                             ? "translate-x-6 bg-gray-700"
                             : "translate-x-0 bg-yellow-400"
@@ -46,7 +46,7 @@ const DarkModeToggle = () => {
                     )}
                 </div>
             </button>
-            <p className="font-bold">
+            <p className="font-bold flex-none">
                 {isDarkMode ? "Dark Mode" : "Light Mode"}
             </p>
         </div>
