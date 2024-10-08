@@ -7,3 +7,5 @@ This project was making with mobile phone only.While the UI/UX might not be as p
 ```
 Acode + Termux
 ```
+- Course CodeWithMosh
+React-18 for Beginners [Website](https://codewithmosh.com/p/ultimate-react-part1)
